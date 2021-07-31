@@ -32,7 +32,7 @@ echo
 echo "=> Step One: Installing dependencies.."
 echo
 sudo apt-get update
-sudo apt-get install git g++ clang build-essential wget libudev-dev libdbus-1-dev libusb-1.0-0-dev zlib1g-dev libssl-dev libpng-dev libjpeg-dev libtiff-dev libasound2-dev libspeex-dev libopenal-dev libv4l-dev libdc1394-22-dev libtheora-dev libbluetooth-dev libfreetype6-dev libxi-dev libxrandr-dev mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev
+sudo apt-get install git g++ clang build-essential wget mesa-utils mesa-utils-extra libudev-dev libdbus-1-dev libusb-1.0-0-dev zlib1g-dev libssl-dev libpng-dev libjpeg-dev libtiff-dev libasound2-dev libspeex-dev libopenal-dev libv4l-dev libdc1394-22-dev libtheora-dev libbluetooth-dev libfreetype6-dev libxi-dev libxrandr-dev mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev
 
 echo
 echo "If any of the packages above were not found, you need to use your"
