@@ -32,7 +32,7 @@ echo
 echo "=> Step One: Installing dependencies.."
 echo
 sudo apt-get update
-sudo apt-get install build-essential g++ libudev-dev libdbus-1-dev libusb-1.0-0-dev zlib1g-dev libssl-dev libpng-dev libjpeg-dev libtiff-dev libasound2-dev libspeex-dev libopenal-dev libv4l-dev libdc1394-22-dev libtheora-dev libbluetooth-dev libfreetype6-dev libxi-dev libxrandr-dev mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev
+sudo apt-get install git g++ clang build-essential wget libudev-dev libdbus-1-dev libusb-1.0-0-dev zlib1g-dev libssl-dev libpng-dev libjpeg-dev libtiff-dev libasound2-dev libspeex-dev libopenal-dev libv4l-dev libdc1394-22-dev libtheora-dev libbluetooth-dev libfreetype6-dev libxi-dev libxrandr-dev mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev
 
 echo
 echo "If any of the packages above were not found, you need to use your"
@@ -59,18 +59,19 @@ echo "Creating and entering build directory..."
 mkdir arsbbuild
 cd arsbbuild
 echo
-echo "Downloading Vrui install script and source code to SARndbox and Kinect from internet."
+echo "Downloading source code to Vrui \"Mad Man\", SARndbox, and Kinect from internet."
 echo
-wget --no-clobber http://web.cs.ucdavis.edu/~okreylos/ResDev/Vrui/Build-Ubuntu.sh
+#wget --no-clobber http://web.cs.ucdavis.edu/~okreylos/ResDev/Vrui/Build-Ubuntu.sh
+git clone https://github.com/MattMadness/vrui-madman.git
 wget --no-clobber https://web.cs.ucdavis.edu/~okreylos/ResDev/SARndbox/SARndbox-2.6.tar.gz
-wget --no-clobber https://web.cs.ucdavis.edu/~okreylos/ResDev/Kinect/Kinect-3.10.tar.gz
+wget --no-clobber https://web.cs.ucdavis.edu/~okreylos/ResDev/Kinect/Kinect-3.7.tar.gz
 echo
 echo "Extracting source code"
 echo
 tar xfz SARndbox-2.6.tar.gz
 echo "SARndbox extracted"
 echo
-tar xfz Kinect-3.10.tar.gz
+tar xfz Kinect-3.7.tar.gz
 echo "Kinect extracted"
 echo
 echo "If you got any errors, you should investigate them."
@@ -99,21 +100,25 @@ echo "1..."
 sleep 1
 echo
 echo "Time to heat the box!"
+CXX="clang"
 echo 
 echo "Building and Installing Vrui"
-if test -f "/usr/local/bin/VruiDemo"; then
-	echo Nevermind it is already installed, moving on I guess!
-
-else
-	bash Build-Ubuntu.sh
-	echo "Yeah I hope you had fun with that globe. Now let's continue the build."
-fi
+cd vrui-madman
+make -j $(nproc)
+sudo make install
+#if test -f "/usr/local/bin/VruiDemo"; then
+#	echo Nevermind it is already installed, moving on I guess!
+#
+#else
+#	bash Build-Ubuntu.sh
+#	echo "Yeah I hope you had fun with that globe. Now let's continue the build."
+#fi
 cd /tmp/arsbbuild
 echo
 echo
 echo "Building Kinect"
 echo
-cd Kinect-3.10
+cd Kinect-3.7
 make -j $(nproc)
 echo
 echo "Installing Kinect"
@@ -125,6 +130,8 @@ cd ../SARndbox-2.6
 make -j $(nproc)
 echo
 echo "Installing SARndbox"
+sed -i 's/$(PWD)/\/usr\/local/g' makefile
+make
 sudo make install
 echo
 echo "That's all done. Unless there are errors. Then that would be bad."
