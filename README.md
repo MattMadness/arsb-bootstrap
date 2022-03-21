@@ -11,7 +11,7 @@ The process goes like this:
 
 # Installation for Mere Mortals
 
-First we need to install our Linux distro. It can be any Linux distro based on Debian or Ubuntu, but if you have no idea what any of those are, just choose Linux Mint. You have to go over to the [Linux Mint download page](https://linuxmint.com/download.php) and get a installation image. It does not matter what desktop you choose (Cinnamon, MATE, or Xfce), it is all according to your preferences. Cinnamon is a slightly heavier but beautiful and functional desktop while MATE and Xfce are lightweight and efficient.
+First we need to install our Linux distro. You have to go over to the [Linux Mint download page](https://linuxmint.com/download.php) and get a installation image. It does not matter what desktop you choose (Cinnamon, MATE, or Xfce), it is all according to your preferences. Cinnamon is a slightly heavier but beautiful and functional desktop while MATE and Xfce are lightweight and efficient.
 
 Next, we need to get a program to burn our install image. For this, either [Balena Etcher](https://www.balena.io/etcher/) or [Rufus](https://rufus.ie/) are fantastic choices. Install the program you want, insert a USB stick with 4GB or more of storage, select the installation image you downloaded and then the installation image (a `.iso` file) then press Burn or Start. ***WARNING! ALL DATA ON THE USB STICK WILL BE ERASED! BACK IT UP!***
 
